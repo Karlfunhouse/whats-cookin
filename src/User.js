@@ -7,10 +7,29 @@ class User {
     this.toCook = [];
   };
 
-  favoriteARecipe() {
+  addFavoriteRecipe() {
     //push a selected recipe into this.favoriteRecipes array
   }
 
+  removeFavoriteRecipe() {
+    //find recipe by id and remove it
+  }
+
+  addRecipeToCook() {
+    //add recipe to this.toCook array
+  }
+
+  filterRecipesByType() {
+
+  }
+
+  findRecipeByName() {
+
+  }
+
+  findRecipeByIngredient() {
+
+  }
 };
 
 
