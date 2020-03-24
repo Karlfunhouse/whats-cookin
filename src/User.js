@@ -1,11 +1,17 @@
 class User {
-  constructor(name, id, pantry) {
-    this.name = name;
-    this.id = id;
-    this.pantry = pantry;
+  constructor(user) {
+    this.name = user.name;
+    this.id = user.id;
+    this.pantry = user.pantry;
+    this.favoriteRecipes = [];
+    this.toCook = [];
   };
+
+  favoriteARecipe() {
+    //push a selected recipe into this.favoriteRecipes array
+  }
+
 };
 
-if (typeof module !== 'undefined') {
+
 module.exports = User;
-}
