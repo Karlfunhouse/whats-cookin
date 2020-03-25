@@ -21,21 +21,23 @@ class User {
 
   filterRecipesByType(searchWord) {
     let allRecipes = this.favoriteRecipes.concat(this.toCook);
-    let foundRecipesByName = [];
     let lowerCaseSearchWord = searchWord.toLowerCase();
 
+    let foundRecipesByType =
     allRecipes.reduce((matchingRecipes, recipe) => {
       recipe.tags.forEach(tag => {
         if (tag === lowerCaseSearchWord) {
           matchingRecipes.push(recipe);
         }
       });
-      if (matchingRecipes.length === 0) {
-        return 'We\'re Sorry, Your search did not return any results!'
-      } else {
         return matchingRecipes;
-      }
     }, []);
+
+    if (foundRecipesByType.length === 0) {
+      return 'We\'re Sorry, Your search did not return any results!'
+    } else {
+      return foundRecipesByType;
+    }
     //iterate thru tags array to see if our users' entry
     //matches anything in the array
   }
