@@ -21,8 +21,12 @@ class User {
     //find recipe by id and remove it
   }
 
-  addRecipeToCook() {
-    //add recipe to this.toCook array
+  addRecipeToCook(idOfClick) {
+    recipeData.find(recipe => {
+      if (recipe.id === idOfClick) {
+        this.toCook.push(recipe);
+      }
+    });
   }
 
   filterRecipesByType(searchWord) {

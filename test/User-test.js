@@ -24,6 +24,13 @@ describe('User', function() {
     expect(user.favoriteRecipes).to.deep.equal([recipeData[3]]);
   });
 
+  it('should be able to add a recipe to Cook to the toCook array', function(){
+    user.toCook = [];
+    user.addRecipeToCook(412309);
+    expect(user.toCook).to.deep.equal([recipeData[2]]);
+  });
+
+
   it('should be able to filter recipes by type', function(){
     expect(user.filterRecipesByType('dinner')).to.deep.equal([recipeData[1]]);
   });
