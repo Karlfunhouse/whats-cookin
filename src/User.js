@@ -23,8 +23,18 @@ class User {
 
   }
 
-  findRecipeByName() {
+  findRecipeByName(searchWord) {
+    let allRecipes = this.favoriteRecipes.concat(this.toCook);
+    let foundRecipesByName = [];
+    let lowercaseSearchWord = searchWord.toLowerCase();
 
+    allRecipes.filter(recipe => {
+      let lowercaseName = recipe.name.toLowerCase();
+      if (lowercaseName.includes(lowercaseSearchWord)) {
+        foundRecipesByName.push(recipe);
+      }
+    });
+    return foundRecipesByName;
   }
 
   findRecipeByIngredient() {

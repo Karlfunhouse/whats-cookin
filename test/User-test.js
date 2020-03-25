@@ -10,7 +10,6 @@ describe('User', function() {
 
   beforeEach(function(){
     user = new User(user1);
-    console.log(user)
   });
 
   it('user should be an instance of User', function(){
@@ -20,6 +19,14 @@ describe('User', function() {
   it('should be able to favorite a recipe', function(){
 
   });
+
+  it('should be able to find recipes (from favorites and toCook arrays) by search word', function(){
+    user.favoriteRecipes = [recipeData[0], recipeData[1]];
+    user.toCook = [recipeData[2]];
+    expect(user.findRecipeByName('chocolate')).to.deep.equal([recipeData[0]]);
+
+  });
+
 
 
 });
