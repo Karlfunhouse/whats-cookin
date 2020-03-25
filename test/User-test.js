@@ -5,7 +5,7 @@ const usersData = require('../data/users');
 const recipeData = require('../data/recipes');
 const user1 = usersData[0];
 
-describe('User', function() {
+describe('User', function() {90899
   let user;
 
   beforeEach(function(){
@@ -52,4 +52,9 @@ describe('User', function() {
   it('should have error handling that tells the user that their search by name didn\'t return results', function(){
     expect(user.findRecipeByName('BURGER')).to.equal('We\'re Sorry, Your search did not return any results!');
   });
+
+  it('should be able to identify recipe based upon an ingredient', function(){
+    expect(user.findRecipeByIngredient('wheat flour')).to.deep.equal([recipeData[0]]);
+  });
+
 });

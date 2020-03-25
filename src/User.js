@@ -1,4 +1,5 @@
 const recipeData = require('../data/recipes');
+const ingredientsData = require('../data/ingredients');
 
 class User {
   constructor(user) {
@@ -21,7 +22,6 @@ class User {
     let matchingRecipe = recipeData.find(recipe => recipe.id === idOfClick);
     let indexOfMatchingRecipe = this.favoriteRecipes.indexOf(matchingRecipe);
     this.favoriteRecipes.splice(indexOfMatchingRecipe, 1);
-    //find recipe by id and remove it
   }
 
   addRecipeToCook(idOfClick) {
@@ -33,11 +33,11 @@ class User {
   }
 
   filterRecipesByType(searchWord) {
-    let allRecipes = this.favoriteRecipes.concat(this.toCook);
+    let savedRecipes = this.favoriteRecipes.concat(this.toCook);
     let lowerCaseSearchWord = searchWord.toLowerCase();
 
     let foundRecipesByType =
-    allRecipes.reduce((matchingRecipes, recipe) => {
+    savedRecipes.reduce((matchingRecipes, recipe) => {
       recipe.tags.forEach(tag => {
         if (tag === lowerCaseSearchWord) {
           matchingRecipes.push(recipe);
@@ -54,11 +54,11 @@ class User {
   }
 
   findRecipeByName(searchWord) {
-    let allRecipes = this.favoriteRecipes.concat(this.toCook);
+    let savedRecipes = this.favoriteRecipes.concat(this.toCook);
     let foundRecipesByName = [];
     let lowerCaseSearchWord = searchWord.toLowerCase();
 
-    allRecipes.filter(recipe => {
+    savedRecipes.filter(recipe => {
       let lowerCaseName = recipe.name.toLowerCase();
       if (lowerCaseName.includes(lowerCaseSearchWord)) {
         foundRecipesByName.push(recipe);
@@ -72,10 +72,22 @@ class User {
     }
   }
 
-  findRecipeByIngredient() {
+  findRecipeByIngredient(searchWord) {
+    let savedRecipes = this.favoriteRecipes.concat(this.toCook);
+    let foundIngredient =
+    ingredientsData.find(ingredient => ingredient.name === searchWord.toLowerCase());
+    let matchingIngredientRecipes = [];
 
+    savedRecipes.forEach(recipe => {
+      recipe.ingredients.filter(ingredient => {
+        if (ingredient.id === foundIngredient.id) {
+          matchingIngredientRecipes.push(recipe);
+        };
+      });
+    });
+
+    return matchingIngredientRecipes;
   }
 };
-
 
 module.exports = User;
