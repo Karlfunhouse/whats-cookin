@@ -19,8 +19,25 @@ class User {
     //add recipe to this.toCook array
   }
 
-  filterRecipesByType() {
+  filterRecipesByType(searchWord) {
+    let allRecipes = this.favoriteRecipes.concat(this.toCook);
+    let foundRecipesByName = [];
+    let lowerCaseSearchWord = searchWord.toLowerCase();
 
+    allRecipes.reduce((matchingRecipes, recipe) => {
+      recipe.tags.forEach(tag => {
+        if (tag === lowerCaseSearchWord) {
+          matchingRecipes.push(recipe);
+        }
+      });
+      if (matchingRecipes.length === 0) {
+        return 'We\'re Sorry, Your search did not return any results!'
+      } else {
+        return matchingRecipes;
+      }
+    }, []);
+    //iterate thru tags array to see if our users' entry
+    //matches anything in the array
   }
 
   findRecipeByName(searchWord) {
