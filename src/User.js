@@ -17,7 +17,10 @@ class User {
     });
   }
 
-  removeFavoriteRecipe() {
+  removeFavoriteRecipe(idOfClick) {
+    let matchingRecipe = recipeData.find(recipe => recipe.id === idOfClick);
+    let indexOfMatchingRecipe = this.favoriteRecipes.indexOf(matchingRecipe);
+    this.favoriteRecipes.splice(indexOfMatchingRecipe, 1);
     //find recipe by id and remove it
   }
 

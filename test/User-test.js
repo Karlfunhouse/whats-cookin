@@ -24,6 +24,12 @@ describe('User', function() {
     expect(user.favoriteRecipes).to.deep.equal([recipeData[3]]);
   });
 
+  it('should be able to remove a favorite recipe', function(){
+    user.removeFavoriteRecipe(595736);
+    expect(user.favoriteRecipes).to.deep.equal([recipeData[1]]);
+  });
+
+
   it('should be able to add a recipe to Cook to the toCook array', function(){
     user.toCook = [];
     user.addRecipeToCook(412309);
