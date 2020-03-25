@@ -20,10 +20,11 @@ describe('Recipe', function() {
     expect(recipe.filterByTag('snack').length).to.equal(9)
   });
 
-  // it('should be able to search recipes by ingredients', function(){
-  //
-  // });
-  //
+  it('should be able to search recipes by ingredients', function(){
+    console.log(recipe.searchByIngredient('brown sugar'))
+    expect(recipe.searchByIngredient('brown sugar').length).to.equal(12)
+  });
+
   // it('should be able to get the cost of its ingredients', function(){
   //
   // });
