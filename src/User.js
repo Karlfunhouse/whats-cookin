@@ -15,7 +15,6 @@ class User {
         this.favoriteRecipes.push(recipe);
       }
     });
-    //push a selected recipe into this.favoriteRecipes array
   }
 
   removeFavoriteRecipe() {

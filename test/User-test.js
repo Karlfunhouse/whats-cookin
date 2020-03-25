@@ -19,7 +19,9 @@ describe('User', function() {
   });
 
   it('should be able to favorite a recipe', function(){
-    
+    user.favoriteRecipes = [];
+    user.addFavoriteRecipe(741603);
+    expect(user.favoriteRecipes).to.deep.equal([recipeData[3]]);
   });
 
   it('should be able to filter recipes by type', function(){
