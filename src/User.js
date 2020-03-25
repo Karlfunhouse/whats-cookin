@@ -38,8 +38,6 @@ class User {
     } else {
       return foundRecipesByType;
     }
-    //iterate thru tags array to see if our users' entry
-    //matches anything in the array
   }
 
   findRecipeByName(searchWord) {

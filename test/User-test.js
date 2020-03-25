@@ -27,10 +27,8 @@ describe('User', function() {
   });
 
   it('should have error handling that tells the user that their search by type didn\'t return results', function(){
-
+    expect(user.filterRecipesByType('salad')).to.equal('We\'re Sorry, Your search did not return any results!');
   });
-
-
 
   it('should be able to find recipes (from favorites and toCook arrays) by search word', function(){
     expect(user.findRecipeByName('CHOCOLATE')).to.deep.equal([recipeData[0]]);
@@ -39,5 +37,4 @@ describe('User', function() {
   it('should have error handling that tells the user that their search by name didn\'t return results', function(){
     expect(user.findRecipeByName('BURGER')).to.equal('We\'re Sorry, Your search did not return any results!');
   });
-
 });
