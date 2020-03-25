@@ -23,10 +23,13 @@ describe('User', function() {
   it('should be able to find recipes (from favorites and toCook arrays) by search word', function(){
     user.favoriteRecipes = [recipeData[0], recipeData[1]];
     user.toCook = [recipeData[2]];
-    expect(user.findRecipeByName('chocolate')).to.deep.equal([recipeData[0]]);
-
+    expect(user.findRecipeByName('CHOCOLATE')).to.deep.equal([recipeData[0]]);
   });
 
-
+  it('should have error handling that tells the user that their search didn\'t return results', function(){
+    user.favoriteRecipes = [recipeData[0], recipeData[1]];
+    user.toCook = [recipeData[2]];
+    expect(user.findRecipeByName('BURGER')).to.equal('We\'re Sorry, Your search did not return any results!');
+  });
 
 });

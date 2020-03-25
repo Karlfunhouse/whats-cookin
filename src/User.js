@@ -26,15 +26,20 @@ class User {
   findRecipeByName(searchWord) {
     let allRecipes = this.favoriteRecipes.concat(this.toCook);
     let foundRecipesByName = [];
-    let lowercaseSearchWord = searchWord.toLowerCase();
+    let lowerCaseSearchWord = searchWord.toLowerCase();
 
     allRecipes.filter(recipe => {
-      let lowercaseName = recipe.name.toLowerCase();
-      if (lowercaseName.includes(lowercaseSearchWord)) {
+      let lowerCaseName = recipe.name.toLowerCase();
+      if (lowerCaseName.includes(lowerCaseSearchWord)) {
         foundRecipesByName.push(recipe);
       }
     });
-    return foundRecipesByName;
+
+    if (foundRecipesByName.length === 0) {
+      return 'We\'re Sorry, Your search did not return any results!'
+    } else {
+      return foundRecipesByName;
+    }
   }
 
   findRecipeByIngredient() {
