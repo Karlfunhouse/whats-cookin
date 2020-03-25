@@ -13,31 +13,38 @@ class Recipe {
   }
 
   filterByTag(searchWord) {
-    //match ingredientsData.name to searchWord
-    //Match ingredientsData.id to recipeData.id
-    //Find
-      let lowerCaseSearchWord = searchWord.toLowerCase();
+    let lowerCaseSearchWord = searchWord.toLowerCase();
+    let foundRecipesByType =
+    recipeData.reduce((matchingRecipes, recipe) => {
+      recipe.tags.forEach(tag => {
+        if (tag === lowerCaseSearchWord) {
+          matchingRecipes.push(recipe);
+        }
+      });
+        return matchingRecipes;
+    }, []);
 
-      let foundRecipesByType =
-      recipeData.reduce((matchingRecipes, recipe) => {
-        recipe.tags.forEach(tag => {
-          if (tag === lowerCaseSearchWord) {
-            matchingRecipes.push(recipe);
-          }
-        });
-          return matchingRecipes;
-      }, []);
-
-      if (foundRecipesByType.length === 0) {
-        return 'We\'re Sorry, Your search did not return any results!'
-      } else {
-        return foundRecipesByType;
-      }
+    if (foundRecipesByType.length === 0) {
+      return 'We\'re Sorry, Your search did not return any results!'
+    } else {
+      return foundRecipesByType;
     }
+  }
 
 
-  searchByIngredients(searchWord) {
+  searchByIngredient(searchWord) {
+    let foundIngredient =
+      ingredientsData.find(ingredient => ingredient.name === searchWord.toLowerCase());
+    let matchingIngredientRecipes = [];
 
+    recipeData.forEach(recipe => {
+      recipe.ingredients.filter(ingredient => {
+        if (ingredient.id === foundIngredient.id) {
+          matchingIngredientRecipes.push(recipe);
+        };
+      });
+    });
+    return matchingIngredientRecipes;
   }
 
   getCostOfIngredients() {
