@@ -1,3 +1,5 @@
+const recipeData = require('../data/recipes');
+
 class User {
   constructor(user) {
     this.name = user.name;
@@ -7,7 +9,12 @@ class User {
     this.toCook = [];
   };
 
-  addFavoriteRecipe() {
+  addFavoriteRecipe(idOfClick) {
+    recipeData.find(recipe => {
+      if (recipe.id === idOfClick) {
+        this.favoriteRecipes.push(recipe);
+      }
+    });
     //push a selected recipe into this.favoriteRecipes array
   }
 

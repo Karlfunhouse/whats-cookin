@@ -19,7 +19,7 @@ describe('User', function() {
   });
 
   it('should be able to favorite a recipe', function(){
-
+    
   });
 
   it('should be able to filter recipes by type', function(){
