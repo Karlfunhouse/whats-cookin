@@ -47,12 +47,20 @@ class Recipe {
     return matchingIngredientRecipes;
   }
 
-  getCostOfIngredients() {
-
+  getCostOfIngredients(ingredientsData) {
+    let ingredientIds = this.ingredients.reduce((acc, el) => {
+      acc.push(el.id)
+      return acc
+    }, [])
+      ingredientIds.map(ingredient => ingredient ===)    // console.log(ingredientsIds);
+    //make an array from recipe.ingredients.ids
+    //for a recipe we need to iterate through the ingredients
+    //match (recipe)ingredients.id with ingredientsData.id
+    //get ingredient.estimatedCostInCents and multiply by (recipe).ingredients.quantity.amount
   }
 
   getRecipeInstructions() {
-
+    return this.instructions;
   }
 }
 
