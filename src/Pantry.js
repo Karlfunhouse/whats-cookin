@@ -76,7 +76,7 @@ class Pantry {
       let thePantryItem = pantry.find(pantryItem => pantryItem.id === recipeIngredient.id)
 
         if(!thePantryItem) {
-          return `Item not in pantry, you still need ${recipeIngredient.quantity.amount} more ${recipeIngredient.quantity.unit.toUpperCase()}s.`;
+          return `${this.locateRecipeIngredientName(recipeIngredient.id)} is not in pantry, you will need ${recipeIngredient.quantity.amount} ${recipeIngredient.quantity.unit.toUpperCase()}s.`;
         } else if (thePantryItem.amount >= recipeIngredient.quantity.amount) {
           return `You have enough ${thePantryItem.name}.`
         } else if (thePantryItem.amount <= recipeIngredient.quantity.amount){
@@ -84,7 +84,11 @@ class Pantry {
           return `${thePantryItem['name']} exists in pantry, but you will need ${deficit} more ${recipeIngredient.quantity.unit.toUpperCase()}s.`
         }
     });
+  }
 
+  locateRecipeIngredientName(recipeIngredientId) {
+    let foundIngredient = this.ingredientsData.find(ingredient => ingredient.id === recipeIngredientId);
+    return foundIngredient.name;
   }
   //determine if i have enough ingredients in Pantry
   //to cook meal
