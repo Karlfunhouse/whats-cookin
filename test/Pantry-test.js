@@ -53,13 +53,13 @@ let returnedIngredientSupply = [
   'You have enough eggs.',
   'You have enough sucrose.',
   'instant vanilla pudding exists in pantry, but you will need 1 more TBSPs.',
-  'Item not in pantry, you still need 0.5 more Cs.',
+  'brown sugar is not in pantry, you will need 0.5 Cs.',
   'You have enough salt.',
-  'Item not in pantry, you still need 24 more SERVINGSs.',
-  'Item not in pantry, you still need 2 more Cs.',
+  'fine sea salt is not in pantry, you will need 24 SERVINGSs.',
+  'semi sweet chips is not in pantry, you will need 2 Cs.',
   'You have enough unsalted butter.',
   'You have enough vanilla.'
-];
+]
 
 describe('Pantry', function(){
   beforeEach(function() {
