@@ -25,7 +25,7 @@ describe('Recipe', function() {
   });
 
   it('should be able to get the cost of its ingredients', function(){
-    expect(recipe.getCostOfIngredients(ingredientsData)).to.equal(1000)
+    expect(recipe.getCostOfIngredients(ingredientsData)).to.equal('$177.76')
   });
 
   it('should be able to get its instructions', function(){
