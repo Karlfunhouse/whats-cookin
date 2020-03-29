@@ -58,9 +58,15 @@ describe('Pantry', function(){
   });
 
   it('should be able to create a list of pantry ingredient names & quantities for a given recipe', function(){
-    expect(pantry.findIngredientNames()).to.deep.equal(ingredientList);
-
+    expect(pantry.compileIngredientNamesQuantity()).to.deep.equal(ingredientList);
   });
 
+  it('should be able to locate the index of a recipe in the recipeData set', function(){
+    expect(pantry.locateRecipeIndex(595736)).to.equal(0);
+  });
+
+  it('should be able to compare and report recipe ingredients v. pantry ingredients', function(){
+    expect(pantry.checkIngredientSupply(595736)).to.deep.equal(recipeData[0]);
+  });
 
 });
