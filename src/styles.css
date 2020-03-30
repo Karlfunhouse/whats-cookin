@@ -99,3 +99,24 @@ li:hover {
 .search-whisk {
   width: 30px;
 }
+
+.featured-recipe {
+  display: flex;
+  justify-content: center;
+  background-color: #B5A2E5;
+  border-top: 2px solid #8C92AC;
+  border-bottom: 2px solid #8C92AC;
+  height: 20%;
+  margin-top: 20px;
+
+}
+
+.featured-recipe-photo {
+  border-right: 2px solid #8C92AC;
+
+}
+
+.featured-recipe-text {
+  margin-left: 3%;
+  margin-right: 3%;
+}
