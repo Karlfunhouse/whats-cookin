@@ -1,30 +1,71 @@
 * {
   box-sizing: border-box;
-  margin: 0;
+  margin-left: 0;
   padding: 0;
   border: none;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   font-family: 'Montserrat', sans-serif;
 }
 
-html,
 body {
-  width: 100%;
-  display: flex;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 nav {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  /* justify-content: space-around; */
-  height: 500px;
-  width: 200px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 40px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
 }
+
 
 header {
   display: flex;
   justify-content: space-between;
+  margin-top: 3%;
+}
+
+form {
+  display: flex;
+  align-items: center;
+
+}
+
+button {
+  height: 30px;
+  width: 60px;
+  border: 1px solid #8C92AC;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  font-weight: 500;
+  background-color: #8C92AC;
+  color: white;
+}
+
+button:hover {
+  background-color: #65DDD8;
+}
+
+ul {
+  display: flex;
+  height: auto;
+}
+
+li {
+  display: inline;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 10px 15px;
+  letter-spacing: 2px;
+}
+
+li:hover {
+  color: #E986EE;
 }
 
 
@@ -33,11 +74,26 @@ header {
   background: url("../assets/whisk.png") no-repeat 3px 3px;
   text-indent: 25px;
   background-size: 20px;
+  border: 1px solid #8C92AC;
+  border-radius: 5px 0 0 5px;
 
 }
 
+.logo-banner {
+  display: flex;
+}
+
+.logo-text {
+  color: #8C92AC;
+  padding-left: 30px;
+  font-size: 3rem;
+  margin: 10px 0 0 0;
+}
+
 .logo-icon {
-  width: 80px;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 5px;
 }
 
 .search-whisk {
