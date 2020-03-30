@@ -2,10 +2,27 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700,900&display=swap" rel="stylesheet">
+    <link href="styles.css" type="text/css" rel="stylesheet">
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <nav>
+      <img src="../assets/oven-icon.png" class="logo-icon" alt="Oven with cute bowl inside">
+      <ul>
+        <li>All Recipes</li>
+        <li>My Recipes</li>
+        <li>Recipes to Cook</li>
+      </ul>
+
+    </nav>
+    <header>
+      <h1>Whats Cookin</h1>
+      <form method="get" class="header-search search-form">
+        <input type="text" id="search-bar" name="search" placeholder="Search Recipes..."></input>
+        <button type="submit">Search</button>
+      </form>
+    </header>
 
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
