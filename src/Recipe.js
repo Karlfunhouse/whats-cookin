@@ -1,6 +1,6 @@
-const recipeData = require('../data/recipes');
-const ingredientsData = require('../data/ingredients');
-
+// const recipeData = require('../data/recipes');
+// const ingredientsData = require('../data/ingredients');
+//
 
 class Recipe {
   constructor(recipeData) {
@@ -56,7 +56,7 @@ class Recipe {
         }
       })
     })
-    return `$${(totalCost / 100)}`
+    return `$${(totalCost / 100).toFixed(2)}`
   }
 
   getRecipeInstructions() {

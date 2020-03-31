@@ -1,5 +1,6 @@
-const recipeData = require('../data/recipes');
-const ingredientsData = require('../data/ingredients');
+// const recipeData = require('../data/recipes');
+// const ingredientsData = require('../data/ingredients');
+//above lines need to be commented in for testing
 
 class User {
   constructor(user) {
