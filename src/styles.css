@@ -112,7 +112,7 @@ hr {
   width: 30px;
 }
 
-.featured-recipe {
+.featured-recipe-js {
   display: flex;
   justify-content: center;
   background-color: #B5A2E5;
@@ -125,7 +125,6 @@ hr {
 
 .featured-recipe-photo {
   border-right: 3px solid #8C92AC;
-
 }
 
 .featured-recipe-title{
@@ -148,4 +147,7 @@ h3{
   margin-left: 3%;
   margin-right: 3%;
   color: #333333;
+}
+.hidden {
+  display: none;
 }
