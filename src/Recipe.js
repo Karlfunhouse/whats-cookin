@@ -1,21 +1,19 @@
-// const recipeData = require('../data/recipes');
-// const ingredientsData = require('../data/ingredients');
-//
-
 class Recipe {
-  constructor(recipeData) {
+  constructor(recipeData, ingredientsData) {
     this.name = recipeData.name;
     this.id = recipeData.id;
     this.image = recipeData.image;
     this.ingredients = recipeData.ingredients;
     this.instructions = recipeData.instructions;
     this.tags = recipeData.tags;
+    this.ingredientsData = ingredientsData;
+    this.recipeData = recipeData;
   }
 
   filterByTag(searchWord) {
     let lowerCaseSearchWord = searchWord.toLowerCase();
     let foundRecipesByType =
-    recipeData.reduce((matchingRecipes, recipe) => {
+    this.recipeData.reduce((matchingRecipes, recipe) => {
       recipe.tags.forEach(tag => {
         if (tag === lowerCaseSearchWord) {
           matchingRecipes.push(recipe);
@@ -34,10 +32,10 @@ class Recipe {
 
   searchByIngredient(searchWord) {
     let foundIngredient =
-      ingredientsData.find(ingredient => ingredient.name === searchWord.toLowerCase());
+      this.ingredientsData.find(ingredient => ingredient.name === searchWord.toLowerCase());
     let matchingIngredientRecipes = [];
 
-    recipeData.forEach(recipe => {
+    this.recipeData.forEach(recipe => {
       recipe.ingredients.filter(ingredient => {
         if (ingredient.id === foundIngredient.id) {
           matchingIngredientRecipes.push(recipe);
@@ -50,7 +48,7 @@ class Recipe {
   getCostOfIngredients() {
     let totalCost = 0;
     this.ingredients.forEach(ingredient => {
-      ingredientsData.find(currentIngredient => {
+      this.ingredientsData.find(currentIngredient => {
         if (currentIngredient.id === ingredient.id) {
           totalCost += (Number(currentIngredient.estimatedCostInCents) * Number(ingredient.quantity.amount))
         }
