@@ -14,7 +14,7 @@
       </div>
       <form method="get" class="header-search search-form">
         <input type="text" id="search-bar" name="search" placeholder="Search Recipes..."></input>
-        <button type="submit">Search</button>
+        <button type="submit" class="search-button-js" onclick=false>Search</button>
       </form>
     </header>
     <nav>
@@ -25,17 +25,15 @@
       </ul>
     </nav>
     <section class="featured-recipe">
-      <img src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="" class="featured-recipe-photo">
-      <div class="featured-recipe-text">
-        <h2>Featured Recipe: Achy Breaky Heart Attack Pancakes</h2>
-        <h4>$ A Heart Attack</h4>
-        <h4>Ingredients:</h4>
-      </div>
+      <!-- this is where the featured recipe will populate -->
     </section>
 
     <script type="text/javascript" src="../data/users.js"></script>
+    <script type="text/javascript" src="../src/User.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
+    <script type="text/javascript" src="../src/Recipe.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
+    <script type="text/javascript" src="../src/Pantry.js"></script>
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>
