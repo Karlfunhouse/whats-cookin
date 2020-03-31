@@ -31,11 +31,11 @@ class Pantry {
 
   locateRecipeIndex(id) {
       let foundRecipe = this.recipeData.find(recipe => recipe.id === id);
-      return recipeData.indexOf(foundRecipe);
+      return this.recipeData.indexOf(foundRecipe);
   }
 
   checkIngredientSupply(recipeId) {
-    let recipe = recipeData[this.locateRecipeIndex(recipeId)];
+    let recipe = this.recipeData[this.locateRecipeIndex(recipeId)];
     let recipeIngredients = recipe.ingredients;
     let pantry = this.compiledPantryList;
 
