@@ -3,6 +3,8 @@ const expect = chai.expect;
 const User = require('../src/User');
 const usersData = require('../data/users');
 const recipeData = require('../data/recipes');
+const ingredientsData = require('../data/ingredients');
+
 const user1 = usersData[0];
 
 describe('User', function() {
