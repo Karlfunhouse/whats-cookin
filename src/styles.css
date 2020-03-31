@@ -49,6 +49,7 @@ button {
 
 button:hover {
   background-color: #65DDD8;
+  cursor: pointer;
 }
 
 ul {
@@ -66,6 +67,7 @@ li {
 
 li:hover {
   color: #E986EE;
+  cursor: pointer;
 }
 
 hr {
@@ -80,6 +82,7 @@ hr {
 
 #search-bar {
   height: 30px;
+  width: 11rem;
   background: url("../assets/whisk.png") no-repeat 3px 3px;
   text-indent: 25px;
   background-size: 20px;
@@ -113,19 +116,36 @@ hr {
   display: flex;
   justify-content: center;
   background-color: #B5A2E5;
-  border-top: 2px solid #8C92AC;
-  border-bottom: 2px solid #8C92AC;
-  height: 20%;
-  margin-top: 20px;
+  border-top: 4px solid #8C92AC;
+  border-bottom: 4px solid #8C92AC;
+  height: 27rem;
+  margin-top: 55px;
 
 }
 
 .featured-recipe-photo {
-  border-right: 2px solid #8C92AC;
+  border-right: 3px solid #8C92AC;
 
+}
+
+.featured-recipe-title{
+  font-size: 1rem;
+  letter-spacing: .2rem;
+  background-color: #6CD1D5;
+  border-bottom: 3px solid #8C92AC;
+  border-left: 3px solid #8C92AC;
+  padding: 9px 9px 9px 9px;
+  color: white;
+  /* margin-bottom: 100px; */
+}
+
+h3{
+  margin: -5% 0 10% 0;
+  font-size: 1.5rem;
 }
 
 .featured-recipe-text {
   margin-left: 3%;
   margin-right: 3%;
+  color: #333333;
 }
