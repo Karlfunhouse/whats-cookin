@@ -11,7 +11,7 @@ describe('User', function() {
   let user;
 
   beforeEach(function(){
-    user = new User(user1);
+    user = new User(user1, recipeData, ingredientsData);
     user.favoriteRecipes = [recipeData[0], recipeData[1]];
     user.toCook = [recipeData[2]];
   });

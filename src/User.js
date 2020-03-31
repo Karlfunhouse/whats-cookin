@@ -1,18 +1,20 @@
-// const recipeData = require('../data/recipes');
+// const this.recipeData = require('../data/recipes');
 // const ingredientsData = require('../data/ingredients');
 //above lines need to be commented in for testing
 
 class User {
-  constructor(user) {
+  constructor(user, recipeData, ingredientsData) {
     this.name = user.name;
     this.id = user.id;
     this.pantry = user.pantry;
     this.favoriteRecipes = [];
     this.toCook = [];
+    this.recipeData = recipeData;
+    this.ingredientsData = ingredientsData;
   };
 
   addFavoriteRecipe(idOfClick) {
-    recipeData.find(recipe => {
+    this.recipeData.find(recipe => {
       if (recipe.id === idOfClick) {
         this.favoriteRecipes.push(recipe);
       }
@@ -20,13 +22,13 @@ class User {
   }
 
   removeFavoriteRecipe(idOfClick) {
-    let matchingRecipe = recipeData.find(recipe => recipe.id === idOfClick);
+    let matchingRecipe = this.recipeData.find(recipe => recipe.id === idOfClick);
     let indexOfMatchingRecipe = this.favoriteRecipes.indexOf(matchingRecipe);
     this.favoriteRecipes.splice(indexOfMatchingRecipe, 1);
   }
 
   addRecipeToCook(idOfClick) {
-    recipeData.find(recipe => {
+    this.recipeData.find(recipe => {
       if (recipe.id === idOfClick) {
         this.toCook.push(recipe);
       }
@@ -76,7 +78,7 @@ class User {
   findRecipeByIngredient(searchWord) {
     let savedRecipes = this.favoriteRecipes.concat(this.toCook);
     let foundIngredient =
-    ingredientsData.find(ingredient => ingredient.name === searchWord.toLowerCase());
+    this.ingredientsData.find(ingredient => ingredient.name === searchWord.toLowerCase());
     let matchingIngredientRecipes = [];
 
     savedRecipes.forEach(recipe => {
