@@ -4,7 +4,7 @@ let ingredients = ingredientsData;
 let user = new User(generateRandom(users), allRecipes, ingredients);
 // console.log(user);
 let allRecipesBtn = document.querySelector('.all-recipe-button-js');
-let myRecipesBtn = document.querySelector('.my-recipes-button-js');
+let favoriteRecipesBtn = document.querySelector('.favorite-recipes-button-js');
 let recipesToCookBtn = document.querySelector('.recipes-to-cook-button-js');
 let searchBar = document.querySelector('#search-bar');
 let searchButton = document.querySelector('.search-button-js');
@@ -12,7 +12,7 @@ let featuredRecipeSection = document.querySelector('.featured-recipe-js');
 let allRecipesSection = document.querySelector('.all-recipe-cards-js');
 
 allRecipesBtn.addEventListener('click', globalEventHandler);
-myRecipesBtn.addEventListener('click', globalEventHandler);
+favoriteRecipesBtn.addEventListener('click', globalEventHandler);
 recipesToCookBtn.addEventListener('click', globalEventHandler);
 searchButton.addEventListener('click', globalEventHandler);
 
@@ -23,11 +23,15 @@ function globalEventHandler(event) {
     console.log('search button hit')
   } else if (event.target === allRecipesBtn) {
     removeTargetedSection(featuredRecipeSection);
-    populateRecipeCards(allRecipes);
+    populateRecipeCards(allRecipes, allRecipesSection);
     console.log('all recipes hit');
-  } else if (event.target === myRecipesBtn) {
+  } else if (event.target === favoriteRecipesBtn) {
+    removeTargetedSection(featuredRecipeSection);
+    populateRecipeCards(user.favoriteRecipes, allRecipesSection);
     console.log('my recipes button hit');
   } else if (event.target === recipesToCookBtn) {
+    removeTargetedSection(featuredRecipeSection);
+    populateRecipeCards(user.toCook, allRecipesSection);
     console.log('recipe to cook button hit');
   }
 }
@@ -55,10 +59,10 @@ function removeTargetedSection(sectionToTarget) {
 }
 
 
-function populateRecipeCards(recipes) {
-  allRecipes.forEach(recipe => {
+function populateRecipeCards(recipeSet, htmlSection) {
+  recipeSet.forEach(recipe => {
     let currentRecipeInstance = new Recipe(recipe, ingredients);
-    allRecipesSection.insertAdjacentHTML('afterbegin', `<article class="recipe-card">
+    htmlSection.insertAdjacentHTML('afterbegin', `<article class="recipe-card">
     <img class = "recipe-card-image" src="${currentRecipeInstance.image}" alt="${currentRecipeInstance.name} image">
     <h4>${currentRecipeInstance.name.toUpperCase()}</h4>
     <hr>
