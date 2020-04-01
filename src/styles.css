@@ -219,6 +219,19 @@ h5 {
   background-color: #76CDD7;
 }
 
+.nav-buttons button {
+  height: 30px;
+  width: 280px;
+  border: none;
+  border-radius: 0;
+  font-weight: 500;
+  background-color: white;
+  color: black;
+  font-size: 1rem;
+  margin: 0 5px 0 0;
+  letter-spacing: 3px;
+}
+
 .heart-button {
   width: 30px;
 }
