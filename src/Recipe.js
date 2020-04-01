@@ -47,7 +47,7 @@ class Recipe {
     return matchingIngredientRecipes;
   }
 
-  getCostOfIngredients(ingredientsData) {
+  getCostOfIngredients() {
     let totalCost = 0;
     this.ingredients.forEach(ingredient => {
       this.ingredientsData.find(currentIngredient => {

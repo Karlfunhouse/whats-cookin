@@ -9,24 +9,25 @@ class User {
     this.ingredientsData = ingredientsData;
   };
 
-  addFavoriteRecipe(idOfClick) {
-    this.recipeData.find(recipe => {
+  addFavoriteRecipe(idOfClick, dataSet) {
+    dataSet.find(recipe => {
       if (recipe.id === idOfClick) {
+
         this.favoriteRecipes.push(recipe);
         recipe.favorite = true;
       }
     });
   }
 
-  removeFavoriteRecipe(idOfClick) {
-    let matchingRecipe = this.recipeData.find(recipe => recipe.id === idOfClick);
+  removeFavoriteRecipe(idOfClick, dataSet) {
+    let matchingRecipe = dataSet.find(recipe => recipe.id === idOfClick);
     let indexOfMatchingRecipe = this.favoriteRecipes.indexOf(matchingRecipe);
     this.favoriteRecipes.splice(indexOfMatchingRecipe, 1);
     matchingRecipe.favorite = false;
   }
 
-  addRecipeToCook(idOfClick) {
-    this.recipeData.find(recipe => {
+  addRecipeToCook(idOfClick, dataSet) {
+    dataSet.find(recipe => {
       if (recipe.id === idOfClick) {
         this.toCook.push(recipe);
         recipe.cookMe = true;
@@ -34,8 +35,8 @@ class User {
     });
   }
 
-  removeRecipeToCook(idOfClick) {
-    let matchingRecipe = this.recipeData.find(recipe => recipe.id === idOfClick);
+  removeRecipeToCook(idOfClick, dataSet) {
+    let matchingRecipe = dataSet.find(recipe => recipe.id === idOfClick);
     let indexOfMatchingRecipe = this.favoriteRecipes.indexOf(matchingRecipe);
     this.toCook.splice(indexOfMatchingRecipe, 1);
     matchingRecipe.cookMe = false;
