@@ -1,9 +1,3 @@
-// const userData = require('../data/users');
-// const ingredientsData = require('../data/ingredients');
-// const recipeData = require('../data/recipes');
-// const User = require('./User');
-// let user = new User(usersData[0]);
-
 class Pantry {
   constructor(user, ingredientsData, recipeData) {
     this.usersPantry = user.pantry;

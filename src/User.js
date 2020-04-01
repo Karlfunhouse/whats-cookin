@@ -1,7 +1,3 @@
-// const this.recipeData = require('../data/recipes');
-// const ingredientsData = require('../data/ingredients');
-//above lines need to be commented in for testing
-
 class User {
   constructor(user, recipeData, ingredientsData) {
     this.name = user.name;
@@ -17,6 +13,7 @@ class User {
     this.recipeData.find(recipe => {
       if (recipe.id === idOfClick) {
         this.favoriteRecipes.push(recipe);
+        recipe.favorite = true;
       }
     });
   }
@@ -25,12 +22,14 @@ class User {
     let matchingRecipe = this.recipeData.find(recipe => recipe.id === idOfClick);
     let indexOfMatchingRecipe = this.favoriteRecipes.indexOf(matchingRecipe);
     this.favoriteRecipes.splice(indexOfMatchingRecipe, 1);
+    matchingRecipe.favorite = false;
   }
 
   addRecipeToCook(idOfClick) {
     this.recipeData.find(recipe => {
       if (recipe.id === idOfClick) {
         this.toCook.push(recipe);
+        recipe.cookMe = true;
       }
     });
   }
@@ -39,6 +38,7 @@ class User {
     let matchingRecipe = this.recipeData.find(recipe => recipe.id === idOfClick);
     let indexOfMatchingRecipe = this.favoriteRecipes.indexOf(matchingRecipe);
     this.toCook.splice(indexOfMatchingRecipe, 1);
+    matchingRecipe.cookMe = false;
   }
 
   filterRecipesByType(searchWord) {

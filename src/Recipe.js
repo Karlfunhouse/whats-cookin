@@ -6,14 +6,16 @@ class Recipe {
     this.ingredients = recipeData.ingredients;
     this.instructions = recipeData.instructions;
     this.tags = recipeData.tags;
-    this.ingredientsData = ingredientsData;
     this.recipeData = recipeData;
+    this.ingredientsData = ingredientsData;
+    this.favorite = false;
+    this.cookMe = false;
   }
 
   filterByTag(searchWord) {
     let lowerCaseSearchWord = searchWord.toLowerCase();
-    let foundRecipesByType =
-    this.recipeData.reduce((matchingRecipes, recipe) => {
+    // console.log(this.recipeData)
+    let foundRecipesByType = this.recipeData.reduce((matchingRecipes, recipe) => {
       recipe.tags.forEach(tag => {
         if (tag === lowerCaseSearchWord) {
           matchingRecipes.push(recipe);
@@ -45,7 +47,7 @@ class Recipe {
     return matchingIngredientRecipes;
   }
 
-  getCostOfIngredients() {
+  getCostOfIngredients(ingredientsData) {
     let totalCost = 0;
     this.ingredients.forEach(ingredient => {
       this.ingredientsData.find(currentIngredient => {

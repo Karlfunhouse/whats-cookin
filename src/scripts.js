@@ -26,7 +26,7 @@ function globalEventHandler(event) {
     console.log('all recipes hit');
   } else if (event.target === favoriteRecipesNavBtn) {
     removeTargetedSection(featuredRecipeSection);
-    populateRecipeCards(user.favoriteRecipes, allRecipesSection);
+    populateRecipeCardsFavoriteOrToCook(user.favoriteRecipes, allRecipesSection);
     console.log('my recipes button hit');
   } else if (event.target === recipesToCookNavBtn) {
     removeTargetedSection(featuredRecipeSection);
@@ -34,20 +34,16 @@ function globalEventHandler(event) {
     console.log('recipe to cook button hit');
   } else if (event.target.classList.contains('heart-button')) {
     toggleIcon(event, 'heartIcon');
-    //push recipe to user.favoriteRecipes
     addRecipeToArray('favorites', event);
   } else if (event.target.classList.contains('heart-button-filled')) {
     toggleIcon(event, 'heartIconFilled');
-    //remove recipe from user.favoriteRecipes
     removeRecipeFromArray('favorites', event)
   } else if (event.target.classList.contains('glove-button')) {
     toggleIcon(event, 'gloveIcon');
-    //add recipe to user.toCook array
     addRecipeToArray('recipesToCook', event);
   } else if (event.target.classList.contains('glove-button-filled')) {
     toggleIcon(event, 'gloveIconFilled');
     removeRecipeFromArray('recipesToCook', event)
-    //remove recipe from user.toCook array
   }
 }
 
@@ -75,8 +71,23 @@ function removeTargetedSection(sectionToTarget) {
 
 
 function populateRecipeCards(recipeSet, htmlSection) {
+  htmlSection.innerHTML = '';
+  let heartButton;
+  let gloveButton;
   recipeSet.forEach(recipe => {
     let currentRecipeInstance = new Recipe(recipe, ingredients);
+    if(currentRecipeInstance.favorite === true) {
+      console.log('true');
+      heartButton = '../assets/heart-solid.svg';
+    } else if(currentRecipeInstance.favorite === false){
+      heartButton = '../assets/heart-outlined.svg';
+      console.log('false');
+    }
+    if(currentRecipeInstance.cookMe === true) {
+      gloveButton = '../assets/kitchen-glove-solid.svg';
+    } else {
+      gloveButton = '../assets/kitchen-glove-outlined.svg';
+    }
     htmlSection.insertAdjacentHTML('afterbegin', `<article id="${currentRecipeInstance.id}" class="recipe-card">
     <img class="recipe-card-image" src="${currentRecipeInstance.image}" alt="${currentRecipeInstance.name} image">
     <h4>${currentRecipeInstance.name.toUpperCase()}</h4>
@@ -84,8 +95,42 @@ function populateRecipeCards(recipeSet, htmlSection) {
     <h5>${currentRecipeInstance.getCostOfIngredients()} / per recipe</h5>
     <h5>${currentRecipeInstance.tags[0]}</h5>
     <div class="card-icons">
-      <button><img class="heart-button" src="../assets/heart-outlined.svg" alt=""></button>
-      <button><img class="glove-button" src="../assets/kitchen-glove-outlined.svg" alt=""></button>
+      <button><img class="heart-button" src=${heartButton} alt=""></button>
+      <button><img class="glove-button" src=${gloveButton} alt=""></button>
+    </div>
+  </article>`)
+})
+}
+
+function populateRecipeCardsFavoriteOrToCook(recipeSet, htmlSection) {
+  console.log(recipeSet);
+  htmlSection.innerHTML = '';
+  let heartButton = '../assets/heart-solid.svg';
+  let gloveButton = '../assets/kitchen-glove-solid.svg';
+  recipeSet.forEach(recipe => {
+    let currentRecipeInstance = new Recipe(recipe, ingredients);
+    // console.log(currentRecipeInstance);
+    // if(currentRecipeInstance.favorite === true) {
+    //   console.log('true');
+    //   heartButton = '../assets/heart-solid.svg';
+    // } else if(currentRecipeInstance.favorite === false){
+    //   heartButton = '../assets/heart-outlined.svg';
+    //   console.log('false');
+    // }
+    // if(currentRecipeInstance.cookMe === true) {
+    //   gloveButton = '../assets/kitchen-glove-solid.svg';
+    // } else {
+    //   gloveButton = '../assets/kitchen-glove-outlined.svg';
+    // }
+    htmlSection.insertAdjacentHTML('afterbegin', `<article id="${currentRecipeInstance.id}" class="recipe-card">
+    <img class="recipe-card-image" src="${currentRecipeInstance.image}" alt="${currentRecipeInstance.name} image">
+    <h4>${currentRecipeInstance.name.toUpperCase()}</h4>
+    <hr>
+    <h5>${currentRecipeInstance.getCostOfIngredients()} / per recipe</h5>
+    <h5>${currentRecipeInstance.tags[0]}</h5>
+    <div class="card-icons">
+      <button><img class="heart-button" src=${heartButton} alt=""></button>
+      <button><img class="glove-button" src=${gloveButton} alt=""></button>
     </div>
   </article>`)
 })
