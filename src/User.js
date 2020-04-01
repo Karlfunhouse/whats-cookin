@@ -35,6 +35,12 @@ class User {
     });
   }
 
+  removeRecipeToCook(idOfClick) {
+    let matchingRecipe = this.recipeData.find(recipe => recipe.id === idOfClick);
+    let indexOfMatchingRecipe = this.favoriteRecipes.indexOf(matchingRecipe);
+    this.toCook.splice(indexOfMatchingRecipe, 1);
+  }
+
   filterRecipesByType(searchWord) {
     let savedRecipes = this.favoriteRecipes.concat(this.toCook);
     let lowerCaseSearchWord = searchWord.toLowerCase();
