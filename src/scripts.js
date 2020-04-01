@@ -63,10 +63,10 @@ function populateRecipeCards(recipes) {
     <h4>${currentRecipeInstance.name.toUpperCase()}</h4>
     <hr>
     <h5>${currentRecipeInstance.getCostOfIngredients()} / per recipe</h5>
-    <h5>${currentRecipeInstance.tags}</h5>
+    <h5>${currentRecipeInstance.tags[0]}</h5>
     <div class="card-icons">
-    <img class="heart-button" src="../assets/heart-outlined.svg" alt="">
-    <img class="glove-button" src="../assets/kitchen-glove-outlined.svg" alt="">
+      <button><img class="heart-button" src="../assets/heart-outlined.svg" alt=""></button>
+      <button><img class="glove-button" src="../assets/kitchen-glove-outlined.svg" alt=""></button>
     </div>
   </article>`)
 })
