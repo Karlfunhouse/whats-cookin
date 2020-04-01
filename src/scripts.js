@@ -2,7 +2,7 @@ let users = usersData;
 let allRecipes = recipeData;
 let ingredients = ingredientsData;
 let user = new User(generateRandom(users), allRecipes, ingredients);
-// console.log(user);
+let allInstantiatedRecipes = instantiateRecipes();
 let allRecipesNavBtn = document.querySelector('.all-recipe-button-js');
 let favoriteRecipesNavBtn = document.querySelector('.favorite-recipes-button-js');
 let recipesToCookNavBtn = document.querySelector('.recipes-to-cook-button-js');
@@ -14,6 +14,10 @@ let globalQuerySelector = document.querySelector('body');
 
 globalQuerySelector.addEventListener('click', globalEventHandler);
 
+function instantiateRecipes() {
+  return allRecipes.map(recipe => new Recipe(recipe, ingredients))
+}
+
 populateFeaturedRecipe();
 
 function globalEventHandler(event) {
@@ -22,30 +26,31 @@ function globalEventHandler(event) {
     console.log('search button hit');
   } else if (event.target === allRecipesNavBtn) {
     removeTargetedSection(featuredRecipeSection);
-    populateRecipeCards(allRecipes, allRecipesSection);
+    populateRecipeCards(allInstantiatedRecipes, allRecipesSection);
     console.log('all recipes hit');
   } else if (event.target === favoriteRecipesNavBtn) {
     removeTargetedSection(featuredRecipeSection);
-    populateRecipeCardsFavoriteOrToCook(user.favoriteRecipes, allRecipesSection);
-    console.log('my recipes button hit');
+    populateRecipeCards(user.favoriteRecipes, allRecipesSection);
+    console.log('favorite recipes button hit');
   } else if (event.target === recipesToCookNavBtn) {
     removeTargetedSection(featuredRecipeSection);
     populateRecipeCards(user.toCook, allRecipesSection);
     console.log('recipe to cook button hit');
   } else if (event.target.classList.contains('heart-button')) {
     toggleIcon(event, 'heartIcon');
-    addRecipeToArray('favorites', event);
+    addRecipeToArray(user.favoriteRecipes, event);
   } else if (event.target.classList.contains('heart-button-filled')) {
     toggleIcon(event, 'heartIconFilled');
-    removeRecipeFromArray('favorites', event)
+    removeRecipeFromArray(user.favoriteRecipes, event)
   } else if (event.target.classList.contains('glove-button')) {
     toggleIcon(event, 'gloveIcon');
-    addRecipeToArray('recipesToCook', event);
+    addRecipeToArray(user.toCook, event);
   } else if (event.target.classList.contains('glove-button-filled')) {
     toggleIcon(event, 'gloveIconFilled');
-    removeRecipeFromArray('recipesToCook', event)
+    removeRecipeFromArray(user.toCook, event)
   }
 }
+
 
 function generateRandom(data) {
   let randomNumber = Math.floor(Math.random() * data.length);
@@ -74,67 +79,72 @@ function populateRecipeCards(recipeSet, htmlSection) {
   htmlSection.innerHTML = '';
   let heartButton;
   let gloveButton;
+  let heart;
+  let glove;
   recipeSet.forEach(recipe => {
-    let currentRecipeInstance = new Recipe(recipe, ingredients);
-    if(currentRecipeInstance.favorite === true) {
+    if(recipe.favorite === true) {
       console.log('true');
       heartButton = '../assets/heart-solid.svg';
-    } else if(currentRecipeInstance.favorite === false){
+      heart = 'heart-button-filled'
+    } else if(recipe.favorite === false){
       heartButton = '../assets/heart-outlined.svg';
+      heart = 'heart-button'
       console.log('false');
     }
-    if(currentRecipeInstance.cookMe === true) {
+    if(recipe.cookMe === true) {
       gloveButton = '../assets/kitchen-glove-solid.svg';
+      glove = 'glove-button-filled';
     } else {
       gloveButton = '../assets/kitchen-glove-outlined.svg';
+      glove = 'glove-button';
     }
-    htmlSection.insertAdjacentHTML('afterbegin', `<article id="${currentRecipeInstance.id}" class="recipe-card">
-    <img class="recipe-card-image" src="${currentRecipeInstance.image}" alt="${currentRecipeInstance.name} image">
-    <h4>${currentRecipeInstance.name.toUpperCase()}</h4>
+    htmlSection.insertAdjacentHTML('afterbegin', `<article id="${recipe.id}" class="recipe-card">
+    <img class="recipe-card-image" src="${recipe.image}" alt="${recipe.name} image">
+    <h4>${recipe.name.toUpperCase()}</h4>
     <hr>
-    <h5>${currentRecipeInstance.getCostOfIngredients()} / per recipe</h5>
-    <h5>${currentRecipeInstance.tags[0]}</h5>
+    <h5>${recipe.getCostOfIngredients()} / per recipe</h5>
+    <h5>${recipe.tags[0]}</h5>
     <div class="card-icons">
-      <button><img class="heart-button" src=${heartButton} alt=""></button>
-      <button><img class="glove-button" src=${gloveButton} alt=""></button>
+      <button><img class=${heart} src=${heartButton} alt=""></button>
+      <button><img class=${glove} src=${gloveButton} alt=""></button>
     </div>
   </article>`)
 })
 }
 
-function populateRecipeCardsFavoriteOrToCook(recipeSet, htmlSection) {
-  console.log(recipeSet);
-  htmlSection.innerHTML = '';
-  let heartButton = '../assets/heart-solid.svg';
-  let gloveButton = '../assets/kitchen-glove-solid.svg';
-  recipeSet.forEach(recipe => {
-    let currentRecipeInstance = new Recipe(recipe, ingredients);
-    // console.log(currentRecipeInstance);
-    // if(currentRecipeInstance.favorite === true) {
-    //   console.log('true');
-    //   heartButton = '../assets/heart-solid.svg';
-    // } else if(currentRecipeInstance.favorite === false){
-    //   heartButton = '../assets/heart-outlined.svg';
-    //   console.log('false');
-    // }
-    // if(currentRecipeInstance.cookMe === true) {
-    //   gloveButton = '../assets/kitchen-glove-solid.svg';
-    // } else {
-    //   gloveButton = '../assets/kitchen-glove-outlined.svg';
-    // }
-    htmlSection.insertAdjacentHTML('afterbegin', `<article id="${currentRecipeInstance.id}" class="recipe-card">
-    <img class="recipe-card-image" src="${currentRecipeInstance.image}" alt="${currentRecipeInstance.name} image">
-    <h4>${currentRecipeInstance.name.toUpperCase()}</h4>
-    <hr>
-    <h5>${currentRecipeInstance.getCostOfIngredients()} / per recipe</h5>
-    <h5>${currentRecipeInstance.tags[0]}</h5>
-    <div class="card-icons">
-      <button><img class="heart-button" src=${heartButton} alt=""></button>
-      <button><img class="glove-button" src=${gloveButton} alt=""></button>
-    </div>
-  </article>`)
-})
-}
+// function populateRecipeCardsFavoriteOrToCook(recipeSet, htmlSection) {
+//   console.log(recipeSet);
+//   htmlSection.innerHTML = '';
+//   let heartButton = '../assets/heart-solid.svg';
+//   let gloveButton = '../assets/kitchen-glove-solid.svg';
+//   recipeSet.forEach(recipe => {
+//     let currentRecipeInstance = recipe;
+//     console.log(currentRecipeInstance);
+//     if(currentRecipeInstance.favorite === true) {
+//       console.log('true');
+//       heartButton = '../assets/heart-solid.svg';
+//     } else if(currentRecipeInstance.favorite === false){
+//       heartButton = '../assets/heart-outlined.svg';
+//       console.log('false');
+//     }
+//     if(currentRecipeInstance.cookMe === true) {
+//       gloveButton = '../assets/kitchen-glove-solid.svg';
+//     } else {
+//       gloveButton = '../assets/kitchen-glove-outlined.svg';
+//     }
+//     htmlSection.insertAdjacentHTML('afterbegin', `<article id="${currentRecipeInstance.id}" class="recipe-card">
+//     <img class="recipe-card-image" src="${currentRecipeInstance.image}" alt="${currentRecipeInstance.name} image">
+//     <h4>${currentRecipeInstance.name.toUpperCase()}</h4>
+//     <hr>
+//     <h5> / per recipe</h5>
+//     <h5>${currentRecipeInstance.tags[0]}</h5>
+//     <div class="card-icons">
+//       <button><img class="heart-button" src=${heartButton} alt=""></button>
+//       <button><img class="glove-button" src=${gloveButton} alt=""></button>
+//     </div>
+//   </article>`)
+// })
+// }
 
 function toggleIcon(event, icon) {
   let recipeId = event.target.closest('article').id;
@@ -163,23 +173,28 @@ function toggleIcon(event, icon) {
 
 function addRecipeToArray(recipeArray, event) {
   let recipeId = Number(event.target.closest('article').id);
-  console.log(recipeId);
-  if(recipeArray === 'favorites') {
-    user.addFavoriteRecipe(recipeId);
-    console.log(user.favoriteRecipes)
-  } else if(recipeArray === 'recipesToCook') {
-    user.addRecipeToCook(recipeId);
-    console.log(user.toCook)
+  let doesRecipeExist = recipeArray.find(recipe => recipe.id === recipeId);
+  if(!doesRecipeExist) {
+    if(recipeArray === user.favoriteRecipes) {
+      user.addFavoriteRecipe(recipeId, allInstantiatedRecipes);
+      console.log(user.favoriteRecipes)
+    } else if(recipeArray === user.toCook) {
+      user.addRecipeToCook(recipeId, allInstantiatedRecipes);
+      console.log(user.toCook)
+    }
+  } else if (doesRecipeExist) {
+    (recipeId, recipeArray)
   }
+
 }
 
 function removeRecipeFromArray(recipeArray, event) {
   let recipeId = Number(event.target.closest('article').id);
-  if(recipeArray === 'favorites') {
-    user.removeFavoriteRecipe(recipeId);
+  if(recipeArray === user.favoriteRecipes) {
+    user.removeFavoriteRecipe(recipeId, allInstantiatedRecipes);
     console.log(user.favoriteRecipes);
-  } else if(recipeArray === 'recipesToCook') {
-    user.removeRecipeToCook(recipeId);
+  } else if(recipeArray === user.toCook) {
+    user.removeRecipeToCook(recipeId, allInstantiatedRecipes);
     console.log(user.toCook);
   }
 }
