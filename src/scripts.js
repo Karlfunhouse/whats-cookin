@@ -33,21 +33,20 @@ function globalEventHandler(event) {
     populateRecipeCards(user.toCook, allRecipesSection);
     console.log('recipe to cook button hit');
   } else if (event.target.classList.contains('heart-button')) {
-    //switch icon
-    toggleIcon(event, 'heartIcon')
+    toggleIcon(event, 'heartIcon');
     //push recipe to user.favoriteRecipes
-    //user.addFavoriteRecipe(event)
+    addRecipeToArray('favorites', event);
   } else if (event.target.classList.contains('heart-button-filled')) {
-    //switch icon
-    toggleIcon(event, 'heartIconFilled')
+    toggleIcon(event, 'heartIconFilled');
     //remove recipe from user.favoriteRecipes
+    removeRecipeFromArray('favorites', event)
   } else if (event.target.classList.contains('glove-button')) {
-    //switch icon
-    toggleIcon(event, 'gloveIcon')
+    toggleIcon(event, 'gloveIcon');
     //add recipe to user.toCook array
+    addRecipeToArray('recipesToCook', event);
   } else if (event.target.classList.contains('glove-button-filled')) {
-    //switch icon
-    toggleIcon(event, 'gloveIconFilled')
+    toggleIcon(event, 'gloveIconFilled');
+    removeRecipeFromArray('recipesToCook', event)
     //remove recipe from user.toCook array
   }
 }
@@ -94,30 +93,48 @@ function populateRecipeCards(recipeSet, htmlSection) {
 
 function toggleIcon(event, icon) {
   let recipeId = event.target.closest('article').id;
-  console.log(recipeId);
   if(icon === 'heartIcon') {
     let heartIcon = event.target.closest('.heart-button');
     heartIcon.src = '../assets/heart-solid.svg';
     heartIcon.classList.add('heart-button-filled');
     heartIcon.classList.remove('heart-button');
-    console.log('heart clicked');
   } else if (icon === 'heartIconFilled') {
     let heartIcon = event.target.closest('.heart-button-filled');
     heartIcon.src = '../assets/heart-outlined.svg';
     heartIcon.classList.remove('heart-button-filled');
     heartIcon.classList.add('heart-button');
-    console.log('heart unclicked');
   } else if (icon === 'gloveIcon') {
     let gloveIcon = event.target.closest('.glove-button');
     gloveIcon.src = '../assets/kitchen-glove-solid.svg';
     gloveIcon.classList.add('glove-button-filled');
     gloveIcon.classList.remove('glove-button')
-    console.log('glove clicked');
   } else if (icon === 'gloveIconFilled') {
     let gloveIcon = event.target.closest('.glove-button-filled');
     gloveIcon.src = '../assets/kitchen-glove-outlined.svg';
     gloveIcon.classList.remove('glove-button-filled');
     gloveIcon.classList.add('glove-button')
-    console.log('glove unclicked');
+  }
+}
+
+function addRecipeToArray(recipeArray, event) {
+  let recipeId = Number(event.target.closest('article').id);
+  console.log(recipeId);
+  if(recipeArray === 'favorites') {
+    user.addFavoriteRecipe(recipeId);
+    console.log(user.favoriteRecipes)
+  } else if(recipeArray === 'recipesToCook') {
+    user.addRecipeToCook(recipeId);
+    console.log(user.toCook)
+  }
+}
+
+function removeRecipeFromArray(recipeArray, event) {
+  let recipeId = Number(event.target.closest('article').id);
+  if(recipeArray === 'favorites') {
+    user.removeFavoriteRecipe(recipeId);
+    console.log(user.favoriteRecipes);
+  } else if(recipeArray === 'recipesToCook') {
+    user.removeRecipeToCook(recipeId);
+    console.log(user.toCook);
   }
 }
