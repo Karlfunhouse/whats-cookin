@@ -12,10 +12,10 @@ class Recipe {
     this.cookMe = false;
   }
 
-  filterByTag(searchWord) {
+  filterByTag(searchWord, recipeDataSet) {
     let lowerCaseSearchWord = searchWord.toLowerCase();
     // console.log(this.recipeData)
-    let foundRecipesByType = this.recipeData.reduce((matchingRecipes, recipe) => {
+    let foundRecipesByType = recipeDataSet.reduce((matchingRecipes, recipe) => {
       recipe.tags.forEach(tag => {
         if (tag === lowerCaseSearchWord) {
           matchingRecipes.push(recipe);
@@ -23,27 +23,23 @@ class Recipe {
       });
         return matchingRecipes;
     }, []);
-
-    if (foundRecipesByType.length === 0) {
-      return 'We\'re Sorry, Your search did not return any results!'
-    } else {
       return foundRecipesByType;
-    }
   }
 
 
-  searchByIngredient(searchWord) {
+  searchByIngredient(searchWord, recipeDataSet) {
     let foundIngredient =
       this.ingredientsData.find(ingredient => ingredient.name === searchWord.toLowerCase());
     let matchingIngredientRecipes = [];
-
-    this.recipeData.forEach(recipe => {
+    if (foundIngredient) {
+    recipeDataSet.forEach(recipe => {
       recipe.ingredients.filter(ingredient => {
         if (ingredient.id === foundIngredient.id) {
           matchingIngredientRecipes.push(recipe);
         };
       });
     });
+  }
     return matchingIngredientRecipes;
   }
 
