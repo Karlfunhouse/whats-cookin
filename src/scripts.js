@@ -11,6 +11,7 @@ let searchBar = document.querySelector('#search-bar');
 let searchButton = document.querySelector('.search-button-js');
 let featuredRecipeSection = document.querySelector('.featured-recipe-js');
 let allRecipesSection = document.querySelector('.all-recipe-cards-js');
+let selectedRecipe = document.querySelector('.display-entire-recipe');
 let globalQuerySelector = document.querySelector('body');
 
 globalQuerySelector.addEventListener('click', globalEventHandler);
@@ -50,6 +51,8 @@ function globalEventHandler(event) {
   } else if (event.target.classList.contains('glove-button-filled')) {
     toggleIcon(event, 'gloveIconFilled');
     removeRecipeFromArray(user.toCook, event)
+  } else if (event.target.classList.contains('recipe-card')) {
+    displayEntireRecipe(event);
   }
 }
 
@@ -68,7 +71,7 @@ function populateFeaturedRecipe() {
     <h3>${featuredRecipe.name}<h3>
     <hr>
     <h4>Cost: ${featuredRecipe.getCostOfIngredients()}</h4>
-    <h4>Ingredients:</h4>
+    <h4>Tags: ${featuredRecipe.tags}</h4>
   </div>`);
 }
 
@@ -181,4 +184,25 @@ function populateSearchResults(searchWord) {
   featuredRecipeSection.remove();
   populateRecipeCards(allFoundRecipes, allRecipesSection)
   }
+}
+
+function displayEntireRecipe(event) {
+  let recipeCardId = Number(event.target.id);
+  let foundRecipe = allInstantiatedRecipes.find(recipe => recipe.id === recipeCardId);
+  console.log(foundRecipe);
+  allRecipesSection.remove();
+  console.log(featuredRecipeSection);
+  featuredRecipeSection = '<h1></h1>';
+  featuredRecipeSection.insertAdjacentHTML('afterbegin', `<img src=${foundRecipe.image} alt="" class="featured-recipe-photo">
+  <div class="featured-recipe-text">
+    <h2><span class="featured-recipe-title">FEATURED RECIPE</span></h2></br>
+    <h3>${foundRecipe.name}<h3>
+    <hr>
+    <h4>Cost: ${foundRecipe.getCostOfIngredients()}</h4>
+    <h4>Tags: ${foundRecipe.tags}</h4>
+    <h4>Instructions: </h4>
+    <ul>
+      ${foundRecipe.instructions}
+    <ul>
+  </div>`);
 }
