@@ -2,6 +2,7 @@ let users = usersData;
 let allRecipes = recipeData;
 let ingredients = ingredientsData;
 let user = new User(generateRandom(users), allRecipes, ingredients);
+let recipe = new Recipe(allRecipes[0], ingredients);
 let allInstantiatedRecipes = instantiateRecipes();
 let allRecipesNavBtn = document.querySelector('.all-recipe-button-js');
 let favoriteRecipesNavBtn = document.querySelector('.favorite-recipes-button-js');
@@ -24,6 +25,7 @@ function globalEventHandler(event) {
   event.preventDefault();
   if(event.target === searchButton) {
     console.log('search button hit');
+    populateSearchResults(searchBar.value)
   } else if (event.target === allRecipesNavBtn) {
     removeTargetedSection(featuredRecipeSection);
     populateRecipeCards(allInstantiatedRecipes, allRecipesSection);
@@ -112,40 +114,6 @@ function populateRecipeCards(recipeSet, htmlSection) {
 })
 }
 
-// function populateRecipeCardsFavoriteOrToCook(recipeSet, htmlSection) {
-//   console.log(recipeSet);
-//   htmlSection.innerHTML = '';
-//   let heartButton = '../assets/heart-solid.svg';
-//   let gloveButton = '../assets/kitchen-glove-solid.svg';
-//   recipeSet.forEach(recipe => {
-//     let currentRecipeInstance = recipe;
-//     console.log(currentRecipeInstance);
-//     if(currentRecipeInstance.favorite === true) {
-//       console.log('true');
-//       heartButton = '../assets/heart-solid.svg';
-//     } else if(currentRecipeInstance.favorite === false){
-//       heartButton = '../assets/heart-outlined.svg';
-//       console.log('false');
-//     }
-//     if(currentRecipeInstance.cookMe === true) {
-//       gloveButton = '../assets/kitchen-glove-solid.svg';
-//     } else {
-//       gloveButton = '../assets/kitchen-glove-outlined.svg';
-//     }
-//     htmlSection.insertAdjacentHTML('afterbegin', `<article id="${currentRecipeInstance.id}" class="recipe-card">
-//     <img class="recipe-card-image" src="${currentRecipeInstance.image}" alt="${currentRecipeInstance.name} image">
-//     <h4>${currentRecipeInstance.name.toUpperCase()}</h4>
-//     <hr>
-//     <h5> / per recipe</h5>
-//     <h5>${currentRecipeInstance.tags[0]}</h5>
-//     <div class="card-icons">
-//       <button><img class="heart-button" src=${heartButton} alt=""></button>
-//       <button><img class="glove-button" src=${gloveButton} alt=""></button>
-//     </div>
-//   </article>`)
-// })
-// }
-
 function toggleIcon(event, icon) {
   let recipeId = event.target.closest('article').id;
   if(icon === 'heartIcon') {
@@ -182,10 +150,7 @@ function addRecipeToArray(recipeArray, event) {
       user.addRecipeToCook(recipeId, allInstantiatedRecipes);
       console.log(user.toCook)
     }
-  } else if (doesRecipeExist) {
-    (recipeId, recipeArray)
   }
-
 }
 
 function removeRecipeFromArray(recipeArray, event) {
@@ -196,5 +161,24 @@ function removeRecipeFromArray(recipeArray, event) {
   } else if(recipeArray === user.toCook) {
     user.removeRecipeToCook(recipeId, allInstantiatedRecipes);
     console.log(user.toCook);
+  }
+}
+
+function populateSearchResults(searchWord) {
+  let allFoundRecipes = [];
+  if (recipe.filterByTag(searchWord, allInstantiatedRecipes).length > 0) {
+    allFoundRecipes = allFoundRecipes.concat(recipe.filterByTag(searchWord, allInstantiatedRecipes))
+  }
+  if (recipe.searchByIngredient(searchWord, allInstantiatedRecipes).length > 0) {
+    allFoundRecipes = allFoundRecipes.concat(recipe.searchByIngredient(searchWord, allInstantiatedRecipes))
+  }
+
+  console.log(allFoundRecipes);
+  if (allFoundRecipes.length === 0) {
+    featuredRecipeSection.remove();
+    allRecipesSection.insertAdjacentHTML('afterbegin', `<h1>We're Sorry there are no recipes that match your search result</h1>`)
+  } else {
+  featuredRecipeSection.remove();
+  populateRecipeCards(allFoundRecipes, allRecipesSection)
   }
 }
