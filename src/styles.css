@@ -33,7 +33,6 @@ header {
 form {
   display: flex;
   align-items: center;
-
 }
 
 button {
@@ -95,7 +94,6 @@ h5 {
   background-size: 20px;
   border: 1px solid #8C92AC;
   border-radius: 5px 0 0 5px;
-
 }
 
 .logo-banner {
@@ -123,16 +121,13 @@ h5 {
   display: flex;
   justify-content: center;
   background-color: #B5A2E5;
-  /* border-top: 4px solid #8C92AC; */
-  /* border-bottom: 4px solid #8C92AC; */
   height: 27rem;
   margin-top: 55px;
-
 }
 
 .featured-recipe-photo {
-  border-right: 3px solid #8C92AC;
-  border-left: 3px solid #8C92AC;
+  border-right: 4px solid #8C92AC;
+  border-left: 4px solid #8C92AC;
 }
 
 .featured-recipe-title{
@@ -143,7 +138,6 @@ h5 {
   border-left: 3px solid #8C92AC;
   padding: 9px 9px 9px 9px;
   color: white;
-  /* margin-bottom: 100px; */
 }
 
 h3{
@@ -156,6 +150,7 @@ h3{
   margin-right: 3%;
   color: #333333;
 }
+
 .hidden {
   display: none;
 }
@@ -184,7 +179,7 @@ h3{
   border-radius: 100%;
   width: 45%;
   height: 45%;
-  border: 3px solid #8C92AC;
+  border: 6px solid #44DED0;
 }
 
 .recipe-card hr {
@@ -247,9 +242,7 @@ h5 {
   width: 100%;
   display: flex;
   flex-direction: row;
-  /* align-content: space-between; */
   justify-content: space-between;
-  /* display: inline; */
   position: absolute;
   bottom: 3%;
 }
@@ -258,14 +251,10 @@ h5 {
   position: absolute;
   bottom: 1%;
   left: 3%;
-  /* display: flex;
-  justify-content: flex-start; */
 }
 
 .glove-button {
   position: absolute;
   bottom: 1%;
   right: 3%;
-  /* display: flex;
-  justify-content: flex-end; */
 }
