@@ -2,14 +2,40 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Whats Cookin</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700,900&display=swap" rel="stylesheet">
+    <link href="styles.css" type="text/css" rel="stylesheet">
+    <title>What's Cookin'</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
-
+    <header>
+      <div class="logo-banner">
+        <img src="../assets/main-icon.png" class="logo-icon" alt="Oven with cute bowl inside">
+        <h1 class="logo-text">WHAT'S COOKIN'</h1>
+      </div>
+      <form method="get" class="header-search search-form">
+        <input type="text" id="search-bar" name="search" placeholder="Search Recipes..."></input>
+        <button type="submit" class="search-button-js" onclick=false>Search</button>
+      </form>
+    </header>
+    <nav>
+      <ul class="nav-buttons">
+        <button><li class="all-recipe-button-js">All Recipes</li></button>
+        <button><li class="favorite-recipes-button-js">Favorite Recipes</li></button>
+        <button><li class="recipes-to-cook-button-js">Recipes to Cook</li></button>
+      </ul>
+    </nav>
+    <section class="featured-recipe-js">
+      <!-- this is where the featured recipe will populate -->
+    </section>
+    <section class="all-recipe-cards all-recipe-cards-js">
+      <!-- this is where we will populate a grid of all the recipe cards -->
+    </section>
     <script type="text/javascript" src="../data/users.js"></script>
+    <script type="text/javascript" src="../src/User.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
+    <script type="text/javascript" src="../src/Recipe.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
+    <script type="text/javascript" src="../src/Pantry.js"></script>
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>

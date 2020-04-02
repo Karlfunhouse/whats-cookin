@@ -1,35 +1,45 @@
-const recipeData = require('../data/recipes');
-const ingredientsData = require('../data/ingredients');
-
 class User {
-  constructor(user) {
+  constructor(user, recipeData, ingredientsData) {
     this.name = user.name;
     this.id = user.id;
     this.pantry = user.pantry;
     this.favoriteRecipes = [];
     this.toCook = [];
+    this.recipeData = recipeData;
+    this.ingredientsData = ingredientsData;
   };
 
-  addFavoriteRecipe(idOfClick) {
-    recipeData.find(recipe => {
+  addFavoriteRecipe(idOfClick, dataSet) {
+    dataSet.find(recipe => {
       if (recipe.id === idOfClick) {
+
         this.favoriteRecipes.push(recipe);
+        recipe.favorite = true;
       }
     });
   }
 
-  removeFavoriteRecipe(idOfClick) {
-    let matchingRecipe = recipeData.find(recipe => recipe.id === idOfClick);
+  removeFavoriteRecipe(idOfClick, dataSet) {
+    let matchingRecipe = dataSet.find(recipe => recipe.id === idOfClick);
     let indexOfMatchingRecipe = this.favoriteRecipes.indexOf(matchingRecipe);
     this.favoriteRecipes.splice(indexOfMatchingRecipe, 1);
+    matchingRecipe.favorite = false;
   }
 
-  addRecipeToCook(idOfClick) {
-    recipeData.find(recipe => {
+  addRecipeToCook(idOfClick, dataSet) {
+    dataSet.find(recipe => {
       if (recipe.id === idOfClick) {
         this.toCook.push(recipe);
+        recipe.cookMe = true;
       }
     });
+  }
+
+  removeRecipeToCook(idOfClick, dataSet) {
+    let matchingRecipe = dataSet.find(recipe => recipe.id === idOfClick);
+    let indexOfMatchingRecipe = this.favoriteRecipes.indexOf(matchingRecipe);
+    this.toCook.splice(indexOfMatchingRecipe, 1);
+    matchingRecipe.cookMe = false;
   }
 
   filterRecipesByType(searchWord) {
@@ -75,7 +85,7 @@ class User {
   findRecipeByIngredient(searchWord) {
     let savedRecipes = this.favoriteRecipes.concat(this.toCook);
     let foundIngredient =
-    ingredientsData.find(ingredient => ingredient.name === searchWord.toLowerCase());
+    this.ingredientsData.find(ingredient => ingredient.name === searchWord.toLowerCase());
     let matchingIngredientRecipes = [];
 
     savedRecipes.forEach(recipe => {

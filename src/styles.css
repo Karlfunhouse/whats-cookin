@@ -1,0 +1,270 @@
+* {
+  box-sizing: border-box;
+  margin-left: 0;
+  padding: 0;
+  border: none;
+  /* border: 1px solid red; */
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 40px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3%;
+}
+
+form {
+  display: flex;
+  align-items: center;
+
+}
+
+button {
+  height: 30px;
+  width: 60px;
+  border: 1px solid #8C92AC;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  font-weight: 500;
+  background-color: #8C92AC;
+  color: white;
+}
+
+button:hover {
+  background-color: #65DDD8;
+  cursor: pointer;
+}
+
+ul {
+  display: flex;
+  height: auto;
+}
+
+li {
+  display: inline;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 10px 15px;
+  letter-spacing: 2px;
+}
+
+li:hover {
+  color: #E986EE;
+  cursor: pointer;
+}
+
+hr {
+    border: none;
+    border-top: 3px double #333;
+    color: #333;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+}
+
+h4 {
+  margin-top: 2% 0 0% 0;
+}
+
+h5 {
+  margin: 0;
+}
+
+#search-bar {
+  height: 30px;
+  width: 11rem;
+  background: url("../assets/whisk.png") no-repeat 3px 3px;
+  text-indent: 25px;
+  background-size: 20px;
+  border: 1px solid #8C92AC;
+  border-radius: 5px 0 0 5px;
+
+}
+
+.logo-banner {
+  display: flex;
+}
+
+.logo-text {
+  color: #8C92AC;
+  padding-left: 30px;
+  font-size: 3rem;
+  margin: 10px 0 0 0;
+}
+
+.logo-icon {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 5px;
+}
+
+.search-whisk {
+  width: 30px;
+}
+
+.featured-recipe-js {
+  display: flex;
+  justify-content: center;
+  background-color: #B5A2E5;
+  /* border-top: 4px solid #8C92AC; */
+  /* border-bottom: 4px solid #8C92AC; */
+  height: 27rem;
+  margin-top: 55px;
+
+}
+
+.featured-recipe-photo {
+  border-right: 3px solid #8C92AC;
+  border-left: 3px solid #8C92AC;
+}
+
+.featured-recipe-title{
+  font-size: 1rem;
+  letter-spacing: .2rem;
+  background-color: #6CD1D5;
+  border-bottom: 3px solid #8C92AC;
+  border-left: 3px solid #8C92AC;
+  padding: 9px 9px 9px 9px;
+  color: white;
+  /* margin-bottom: 100px; */
+}
+
+h3{
+  margin: -5% 0 10% 0;
+  font-size: 1.5rem;
+}
+
+.featured-recipe-text {
+  margin-left: 3%;
+  margin-right: 3%;
+  color: #333333;
+}
+.hidden {
+  display: none;
+}
+
+.all-recipe-cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+  width: 30%;
+  height: 20rem;
+  background-color: #76CDD7;
+  position: relative;
+}
+
+.recipe-card-image {
+  margin-top: 5%;
+  border-radius: 100%;
+  width: 45%;
+  height: 45%;
+  border: 3px solid #8C92AC;
+}
+
+.recipe-card hr {
+  border: none;
+  border-top: 2px solid #8C92AC;
+  overflow: visible;
+  text-align: center;
+  height: 2px;
+}
+
+.recipe-card h4,
+h5 {
+  color: #333333;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 0;
+  text-align: center;
+  word-break: break-word;
+}
+
+.recipe-card h5:nth-of-type(2) {
+  margin-top: 3%;
+  margin-bottom: 0;
+}
+
+.card-icons button {
+  height: 30px;
+  width: 50px;
+  border: none;
+  border-left: none;
+  border-radius: 0;
+  font-weight: 500;
+  background-color: #76CDD7;
+}
+
+.nav-buttons button {
+  height: 30px;
+  width: 280px;
+  border: none;
+  border-radius: 0;
+  font-weight: 500;
+  background-color: white;
+  color: black;
+  font-size: 1rem;
+  margin: 0 5px 0 0;
+  letter-spacing: 3px;
+}
+
+.heart-button,
+.heart-button-filled {
+  width: 30px;
+}
+
+.glove-button,
+.glove-button-filled {
+  width: 30px;
+}
+
+.card-icons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  /* align-content: space-between; */
+  justify-content: space-between;
+  /* display: inline; */
+  position: absolute;
+  bottom: 3%;
+}
+
+.heart-button {
+  position: absolute;
+  bottom: 1%;
+  left: 3%;
+  /* display: flex;
+  justify-content: flex-start; */
+}
+
+.glove-button {
+  position: absolute;
+  bottom: 1%;
+  right: 3%;
+  /* display: flex;
+  justify-content: flex-end; */
+}

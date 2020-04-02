@@ -3,13 +3,15 @@ const expect = chai.expect;
 const User = require('../src/User');
 const usersData = require('../data/users');
 const recipeData = require('../data/recipes');
+const ingredientsData = require('../data/ingredients');
+
 const user1 = usersData[0];
 
 describe('User', function() {
   let user;
 
   beforeEach(function(){
-    user = new User(user1);
+    user = new User(user1, recipeData, ingredientsData);
     user.favoriteRecipes = [recipeData[0], recipeData[1]];
     user.toCook = [recipeData[2]];
   });
@@ -20,19 +22,19 @@ describe('User', function() {
 
   it('should be able to favorite a recipe', function(){
     user.favoriteRecipes = [];
-    user.addFavoriteRecipe(741603);
+    user.addFavoriteRecipe(741603, recipeData);
     expect(user.favoriteRecipes).to.deep.equal([recipeData[3]]);
   });
 
   it('should be able to remove a favorite recipe', function(){
-    user.removeFavoriteRecipe(595736);
+    user.removeFavoriteRecipe(595736, recipeData);
     expect(user.favoriteRecipes).to.deep.equal([recipeData[1]]);
   });
 
 
   it('should be able to add a recipe to Cook to the toCook array', function(){
     user.toCook = [];
-    user.addRecipeToCook(412309);
+    user.addRecipeToCook(412309, recipeData);
     expect(user.toCook).to.deep.equal([recipeData[2]]);
   });
 
