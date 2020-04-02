@@ -38,6 +38,12 @@ describe('User', function() {
     expect(user.toCook).to.deep.equal([recipeData[2]]);
   });
 
+  it('should be able to remove a recipe from the toCook array', function(){
+    user.toCook = [];
+    user.addRecipeToCook(412309, recipeData);
+    user.removeRecipeToCook(412309, recipeData);
+    expect(user.toCook).to.deep.equal([])
+  });
 
   it('should be able to filter recipes by type', function(){
     expect(user.filterRecipesByType('dinner')).to.deep.equal([recipeData[1]]);
