@@ -26,7 +26,11 @@ function globalEventHandler(event) {
   event.preventDefault();
   if(event.target === searchButton) {
     selectedRecipe.innerHTML = '';
-    populateSearchResults(searchBar.value)
+    if (searchBar.value.length > 0) {
+      populateSearchResults(searchBar.value);
+    } else if (searchBar.value.length === 0) {
+      populateRecipeCards(allInstantiatedRecipes, allRecipesSection);
+    }
   } else if (event.target === allRecipesNavBtn) {
     removeTargetedSection(featuredRecipeSection);
     allRecipesSection.classList.remove('hidden');
@@ -176,7 +180,7 @@ function populateSearchResults(searchWord) {
   if (allFoundRecipes.length === 0) {
     featuredRecipeSection.remove();
     allRecipesSection.innerHTML = '';
-    allRecipesSection.insertAdjacentHTML('afterbegin', `<h1>We're Sorry there are no recipes that match your search result</h1>`)
+    allRecipesSection.insertAdjacentHTML('afterbegin', `<h1>We're Sorry! There are no recipes that match your search result.</h1>`)
   } else {
   featuredRecipeSection.remove();
   populateRecipeCards(allFoundRecipes, allRecipesSection)
@@ -193,10 +197,10 @@ function displayEntireRecipe(event) {
 
   selectedRecipe.insertAdjacentHTML('afterbegin', `<img src=${foundRecipe.image} alt="" class="featured-recipe-photo">
   <div class="featured-recipe-text">
-    <h2 style="margin-top: -.05rem;"><span class="featured-recipe-title">SELECTED RECIPE</span></h2></br>
-    <h3 style="margin-top: .25rem;">${foundRecipe.name}<h3>
+    <h2 style="margin-top: 0rem;"><span class="featured-recipe-title">SELECTED RECIPE</span></h2></br>
+    <h3 style="margin-top: .25rem; margin-bottom: 4rem;">${foundRecipe.name}<h3>
     <hr>
-    <h4 style="margin-top: -4rem;">Cost: ${foundRecipe.getCostOfIngredients()}</h4>
+    <h4 style="margin-top: -1rem;">Cost: ${foundRecipe.getCostOfIngredients()}</h4>
     <h4>Tags: ${foundRecipe.tags}</h4>
     <h4>Instructions: </h4>
     <section class="instructions-js">
