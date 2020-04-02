@@ -189,20 +189,26 @@ function populateSearchResults(searchWord) {
 function displayEntireRecipe(event) {
   let recipeCardId = Number(event.target.id);
   let foundRecipe = allInstantiatedRecipes.find(recipe => recipe.id === recipeCardId);
-  console.log(foundRecipe);
   allRecipesSection.remove();
-  console.log(featuredRecipeSection);
-  featuredRecipeSection = '<h1></h1>';
-  featuredRecipeSection.insertAdjacentHTML('afterbegin', `<img src=${foundRecipe.image} alt="" class="featured-recipe-photo">
+  featuredRecipeSection.remove();
+  selectedRecipe.classList.remove('hidden');
+
+  selectedRecipe.insertAdjacentHTML('afterbegin', `<img src=${foundRecipe.image} alt="" class="featured-recipe-photo">
   <div class="featured-recipe-text">
-    <h2><span class="featured-recipe-title">FEATURED RECIPE</span></h2></br>
+    <h2><span class="featured-recipe-title">SELECTED RECIPE</span></h2></br>
     <h3>${foundRecipe.name}<h3>
     <hr>
     <h4>Cost: ${foundRecipe.getCostOfIngredients()}</h4>
     <h4>Tags: ${foundRecipe.tags}</h4>
     <h4>Instructions: </h4>
-    <ul>
-      ${foundRecipe.instructions}
+    <ul class="instructions-ul-js">
     <ul>
   </div>`);
-}
+
+  let instructionsUl = document.querySelector('.instructions-ul-js')
+  foundRecipe.instructions.forEach(instruction => {
+    let instructionNum = 1;
+    instructionsUl.insertAdjacentHTML('beforeend', `<li>Step${instructionNum}: ${instruction.instruction}</li>`);
+    instructionNum++;
+  })
+};
