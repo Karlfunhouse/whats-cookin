@@ -14,7 +14,6 @@ class Recipe {
 
   filterByTag(searchWord, recipeDataSet) {
     let lowerCaseSearchWord = searchWord.toLowerCase();
-    // console.log(this.recipeData)
     let foundRecipesByType = recipeDataSet.reduce((matchingRecipes, recipe) => {
       recipe.tags.forEach(tag => {
         if (tag === lowerCaseSearchWord) {
@@ -25,7 +24,6 @@ class Recipe {
     }, []);
       return foundRecipesByType;
   }
-
 
   searchByIngredient(searchWord, recipeDataSet) {
     let foundIngredient =

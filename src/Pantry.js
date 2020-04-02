@@ -51,11 +51,8 @@ class Pantry {
     let foundIngredient = this.ingredientsData.find(ingredient => ingredient.id === recipeIngredientId);
     return foundIngredient.name;
   }
-
-  cookAndRemoveRecipeIngredientsFromPantry() {
-    //this is a stretch goal; We will return to this method.
-  }
 }
+
 if (typeof module !== 'undefined') {
   module.exports = Pantry;
 }
