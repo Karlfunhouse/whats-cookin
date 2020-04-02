@@ -1,5 +1,3 @@
-![Logo of the project](assets/main-icon.png)
-
 # What's Cookin'
 > For when you just need a little extra inspiration in the kitchen.
 
@@ -42,7 +40,7 @@ If you've ever run out of ideas for what to make for dinner, especially on day 1
 ## Contributors
 
 * **[Karl Nielsen](https://github.com/karlfunhouse)**
-* **[John Watterson](https://github.com/theinfamouskeyduster)**
+* **[John Watterson](https://github.com/infamouskeyduster)**
 
 ## Links
 
